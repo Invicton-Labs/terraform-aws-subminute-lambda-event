@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "iterator" {
 // The function that calls the function of interest
 module "lambda_iterator" {
   source  = "Invicton-Labs/lambda-set/aws"
-  version = "~> 0.4.2"
+  version = "~> 0.6.0"
   edge    = false
   lambda_config = {
     function_name                  = "subminute-lambda-event-iterator-${random_id.id.hex}"
@@ -21,7 +21,7 @@ module "lambda_iterator" {
     timeout                        = 2
     memory_size                    = 128
     handler                        = "main.lambda_handler"
-    runtime                        = "python3.9"
+    runtime                        = "python3.10"
     reserved_concurrent_executions = 1
     architectures                  = var.use_x86_64 ? ["x86_64"] : ["arm64"]
     environment = {
